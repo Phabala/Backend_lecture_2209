@@ -9,7 +9,7 @@ exports.index = function(title, list, content) {
     <title>${title}</title>     <!-- 23.app조회.js 에서 변경됨 -->
 </head>
 <body style="margin: 50px;">
-    <h1>웹 기술</h1>
+    <h1><a href="/">웹 기술</a></h1>
     <ul>
         ${list}                 <!-- 22.app리스트.js 에서 변경됨 -->
     </ul>

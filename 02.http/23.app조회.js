@@ -3,26 +3,31 @@ const url = require('url');
 const fs = require('fs');
 const qs = require('querystring');
 const view = require('./view/index');
+const template = require('./view/template');
 
 http.createServer((req, res) => {
     let pathname = url.parse(req.url).pathname;
     let query = url.parse(req.url, true).query;
     switch(pathname) {
     case '/':
-        if (req.id === undefined) {     // 초기 화면
+        if (query.id === undefined) {     // 초기 화면
             fs.readdir('data', (err, files) => {
-                let list = '';
-                const content = '';
                 const title = '웹 기술';
-                for (let file of files) {
-                    const title = file.substring(0, file.length-4);     // .txt를 제외한 나머지
-                    list += `<li><h3><a href="/?id=${title}">${title}</a></h3></li>`;
-                }
+                const list = template.listGen(files);
+                const content = template.HOME_CONTENTS;
                 const html = view.index(title, list, content);
                 res.end(html);
             });
         } else {                        // 개별 아이템에 대한 화면
-
+            fs.readdir('data', (err, files) => {
+                const title = query.id;
+                const list = template.listGen(files);
+                const filename = `data/${query.id}.txt`;
+                fs.readFile(filename, 'utf8', (err, content) => {
+                    const html = view.index(title, list, content);
+                    res.end(html);
+                });
+            });
         }
         break;
     default:
