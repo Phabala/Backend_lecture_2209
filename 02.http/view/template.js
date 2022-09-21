@@ -66,4 +66,11 @@ module.exports = {
             </form>        
         `;
     },
+    deleteForm: function(title) {
+        return `
+            ${title} 글을 삭제하시겠습니까?<br><br>
+            <button onclick="location.href='/deleteConfirm?id=${title}'">삭제</button>
+            <button onclick="location.href='/?id=${title}'">취소</button>
+        `;
+    }
 }
