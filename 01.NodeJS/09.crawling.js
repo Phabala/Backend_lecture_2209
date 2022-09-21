@@ -8,12 +8,14 @@ axios.get(url)
         const $ = cheerio.load(response.data);
 
         $('.view_box').each((index, element) => {
-            let title = $(element).find('.book_tit').text().trim();
-            let author = $(element).find('.book_writer').text().trim();
+            let title = $(element).find('.itemName').text().trim();
+            let author = $(element).find('.author').text().trim();
             author = author.split(',').map(x => x.trim()).join(', ');
+            let company = $(element).find('.company').text().trim();
+            let price = $(element).find('.price').text().trim();
             console.log(index+1, '============================================');
             console.log(title);
-            console.log(author);
+            console.log(author, company, price);
         });
     })
     .catch(err => {
