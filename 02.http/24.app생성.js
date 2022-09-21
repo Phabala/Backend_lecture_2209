@@ -15,7 +15,8 @@ http.createServer((req, res) => {
                 const title = '웹 기술';
                 const list = template.listGen(files);
                 const content = template.HOME_CONTENTS.replace('\n','<br>');
-                const html = view.index(title, list, content);
+                const control = template.buttonGen();
+                const html = view.index(title, list, content, control);
                 res.end(html);
             });
         } else {                        // 개별 아이템에 대한 화면
@@ -25,10 +26,24 @@ http.createServer((req, res) => {
                 const filename = `data/${query.id}.txt`;
                 fs.readFile(filename, 'utf8', (err, data) => {
                     let content = data.replace('\n','<br>');
-                    const html = view.index(title, list, content);
+                    const control = template.buttonGen(title);
+                    const html = view.index(title, list, content, control);
                     res.end(html);
                 });
             });
+        }
+        break;
+    case '/create':
+        if (req.method === 'GET') {
+            fs.readdir('data', (err, files) => {
+                const title = '글 생성';
+                const list = template.listGen(files);
+                const content = template.createForm();
+                const html = view.index(title, list, content, ' ');
+                res.end(html);
+            });
+        } else {
+
         }
         break;
     default:

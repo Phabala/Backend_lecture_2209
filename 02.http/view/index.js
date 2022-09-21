@@ -1,4 +1,4 @@
-exports.index = function(title, list, content) {
+exports.index = function(title, list, content, control) {
     return `
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,6 +17,8 @@ exports.index = function(title, list, content) {
     <p>
         ${content}              <!-- 23.app조회.js 에서 변경됨 -->
     </p>
+    <hr>
+    ${control}
 </body>
 </html>
     `;
