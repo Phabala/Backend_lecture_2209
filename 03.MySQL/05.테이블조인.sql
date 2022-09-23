@@ -1,6 +1,12 @@
 /*
  * Table join
  */
+# song table
+CREATE TABLE song ( 
+	sid INT PRIMARY KEY AUTO_INCREMENT, 
+	title VARCHAR(32) NOT NULL, 
+	lyrics VARCHAR(32) 
+) AUTO_INCREMENT=101;
 # girl_group table
 CREATE TABLE girl_group ( 
 	gid INT PRIMARY KEY AUTO_INCREMENT, 
@@ -8,12 +14,6 @@ CREATE TABLE girl_group (
 	debut DATE NOT NULL, 
 	hit_song_id INT 
 ) AUTO_INCREMENT=1001;
-# song table
-CREATE TABLE song ( 
-	sid INT PRIMARY KEY AUTO_INCREMENT, 
-	title VARCHAR(32) NOT NULL, 
-	lyrics VARCHAR(32) 
-) AUTO_INCREMENT=101;
 
 INSERT INTO song (title, lyrics) 
 	VALUES ('Tell Me', 'tell me tell me tetetete tel me'),
