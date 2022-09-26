@@ -3,6 +3,7 @@
 ex.js
 tmp/
 tmp.html
+mysql.json
 
 # Logs
 logs
